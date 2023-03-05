@@ -3,6 +3,8 @@ import EthImage from '../images/ethereum.svg';
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 import Skeleton from '../components/UI/Skeleton';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const ItemDetails = () => {
   const { itemId } = useParams();
@@ -24,6 +26,10 @@ const ItemDetails = () => {
     fetchItem();
   }, [itemId]);
 
+  useEffect(() => {
+    AOS.init();
+  }, []);
+
   return (
     <div id='wrapper'>
       <div className='no-bottom no-top' id='content'>
@@ -43,6 +49,7 @@ const ItemDetails = () => {
                     src={item.nftImage}
                     className='img-fluid img-rounded mb-sm-30 nft-image'
                     alt=''
+                    data-aos='fade-up'
                   />
                 )}
               </div>
@@ -51,7 +58,7 @@ const ItemDetails = () => {
                   {loading ? (
                     <Skeleton height={'2.5rem'} width={'20rem'} />
                   ) : (
-                    <h2>
+                    <h2 data-aos='fade-up'>
                       {item.title} #{item.tag}
                     </h2>
                   )}
@@ -63,7 +70,7 @@ const ItemDetails = () => {
                         borderRadius={'3px'}
                       />
                     ) : (
-                      <div className='item_info_views'>
+                      <div className='item_info_views' data-aos='fade-up'>
                         <i className='fa fa-eye'></i>
                         100
                       </div>
@@ -75,7 +82,7 @@ const ItemDetails = () => {
                         borderRadius={'3px'}
                       />
                     ) : (
-                      <div className='item_info_like'>
+                      <div className='item_info_like' data-aos='fade-up'>
                         <i className='fa fa-heart'></i>
                         74
                       </div>
@@ -84,7 +91,7 @@ const ItemDetails = () => {
                   {loading ? (
                     <Skeleton height={'80px'} width={'100%'} />
                   ) : (
-                    <p>{item.description}</p>
+                    <p data-aos='fade-up'>{item.description}</p>
                   )}
                   <div className='d-flex flex-row'>
                     <div className='mr40'>
@@ -103,8 +110,9 @@ const ItemDetails = () => {
                                 className='lazy'
                                 src={item.ownerImage}
                                 alt=''
+                                data-aos='fade-up'
                               />
-                              <i className='fa fa-check'></i>
+                              <i className='fa fa-check' data-aos='fade-up'></i>
                             </Link>
                           )}
                         </div>
@@ -112,7 +120,10 @@ const ItemDetails = () => {
                           {loading ? (
                             <Skeleton height={'1rem'} width={'5rem'} />
                           ) : (
-                            <Link to={`/author/${item.ownerId}`}>
+                            <Link
+                              to={`/author/${item.ownerId}`}
+                              data-aos='fade-up'
+                            >
                               {item.ownerName}
                             </Link>
                           )}
@@ -138,8 +149,9 @@ const ItemDetails = () => {
                                 className='lazy'
                                 src={item.creatorImage}
                                 alt=''
+                                data-aos='fade-up'
                               />
-                              <i className='fa fa-check'></i>
+                              <i className='fa fa-check' data-aos='fade-up'></i>
                             </Link>
                           )}
                         </div>
@@ -147,7 +159,10 @@ const ItemDetails = () => {
                           {loading ? (
                             <Skeleton height={'1rem'} width={'5rem'} />
                           ) : (
-                            <Link to={`/author/${item.creatorId}`}>
+                            <Link
+                              to={`/author/${item.creatorId}`}
+                              data-aos='fade-up'
+                            >
                               {item.creatorName}
                             </Link>
                           )}
@@ -161,7 +176,7 @@ const ItemDetails = () => {
                       {loading ? (
                         <Skeleton height={'1rem'} width={'3rem'} />
                       ) : (
-                        <span>{item.price}</span>
+                        <span data-aos='fade-up'>{item.price}</span>
                       )}
                     </div>
                   </div>

@@ -5,6 +5,8 @@ import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 import Skeleton from '../components/UI/Skeleton';
 import SkeletonCards from '../components/re-useable/SkeletonCards';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const Author = () => {
   const [isFollowing, setIsFollowing] = useState(false);
@@ -41,6 +43,10 @@ const Author = () => {
     setIsFollowing(!isFollowing);
   };
 
+  useEffect(() => {
+    AOS.init();
+  }, []);
+
   return (
     <div id='wrapper'>
       <div className='no-bottom no-top' id='content'>
@@ -57,7 +63,7 @@ const Author = () => {
           ></section>
         )}
 
-        <section aria-label='section'>
+        <section aria-label='section' data-aos='fade-up'>
           <div className='container'>
             <div className='row'>
               <div className='col-md-12'>

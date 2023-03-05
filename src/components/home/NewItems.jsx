@@ -4,6 +4,8 @@ import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
 import Cards from '../re-useable/Cards';
 import SkeletonCards from '../re-useable/SkeletonCards';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const NewItems = () => {
   const [loading, setLoading] = useState(true);
@@ -20,8 +22,12 @@ const NewItems = () => {
     fetchNewItems();
   }, []);
 
+  useEffect(() => {
+    AOS.init();
+  }, []);
+
   return (
-    <section id='section-items' className='no-bottom'>
+    <section data-aos='fade-up' id='section-items' className='no-bottom'>
       <div className='container'>
         <div className='row'>
           <div className='col-lg-12'>
