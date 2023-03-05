@@ -1,7 +1,14 @@
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import CountDown from '../home/CountDown';
 
 const Cards = ({ items, cardType }) => {
+  useEffect(() => {
+    AOS.init();
+  }, []);
+
   return items.map((item, index) => (
     <div
       className={
@@ -9,6 +16,7 @@ const Cards = ({ items, cardType }) => {
       }
       key={index}
       style={{ display: 'block', backgroundSize: 'cover' }}
+      data-aos='fade-up'
     >
       <div className='nft__item'>
         <div className='author_list_pp'>
